@@ -1,0 +1,3 @@
+﻿{"alphabet":["a","b","c","#","*"],"productionRuleA":["#a*","#b*","#c*","**a*","**b*","**c*","#","**","*ac","*ab","*aa","*ba","*bb","*bc","*ca","*cb","*cc",""],"productionRuleB":["#a#","#b#","#c#","**a#","**b#","**c#","","","a*c","a*b","a*a","b*a","b*b","b*c","c*a","c*b","c*c","*"]}
+
+{"alphabet":["a","b","c"],"productionRuleA":["a","b","c"],"productionRuleB":["b","c","a"]}

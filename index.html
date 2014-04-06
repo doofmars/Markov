@@ -1,0 +1,52 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>Mengen Rechner</title>
+
+<script type="text/javascript" src="script/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="script/jquery-ui-1.10.4.custom.js"></script>
+
+<link rel='stylesheet' id='style-css'  href='css/style.css' type='text/css' media='all' />
+
+<script type="text/javascript" src="script/automat.js"></script>
+</head>
+<body onload="init();">	
+	<p>Known issues: Save Function (order of rules and puncture)</p>  
+	<form>
+		<input type="radio" name="selector" id="SemiThue" autocomplete='off' checked="checked"> Semi-Thue Mode
+		<input type="radio" name="selector" id="Markov"  autocomplete='off'> Markov-Mode
+		<input type="text" id="iterations" size="6" maxlength="5"> Max Iterations
+	
+	</form>
+	<input type="button" id="getData" value="Get Data" onclick="getStatus()">
+	<input type="button" id="setData" value="Set Data" onclick="setStatus()">
+	<div id="IOGateway"></div>
+	
+<div id="wrapper">
+	<div id="dAlphabet">
+		<div id="head">Alphabet</div>
+			<input type="text" id="inAlphabet" size="6" maxlength="1">
+			<input type="button" value="OK" id="btAddAlphabet" onclick="addAlphabet()">
+		<div id="theAlphabet"></div>
+	</div>
+	<div id="dRules">
+		<div id="head">Production Rules</div>
+			<input type="text" id="inRuleA" size="10" maxlength="40">
+			→ 
+			<input type="text" id="inRuleB" size="10" maxlength="40">
+			<input type="button" value="OK" id="btAddRule" onclick="addRule()">
+		<div id="theRules"></div>
+	</div>
+	<div id="dRun">
+		<div id="head">Run</div>
+			<input type="text" id="inRun" size="20" maxlength="100">
+			<input type="button" value="Run" id="btRun" onclick="run()" autocomplete='off'>
+		<div id="theRun"></div>
+	</div>
+
+</div>
+
+</body>
+
+</html>
