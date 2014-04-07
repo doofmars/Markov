@@ -1,4 +1,16 @@
-﻿function init() {
+﻿/*!
+ * Markov | Semi Thue machine simulator
+ * https://github.com/doofmars/Markov
+ *
+ * Copyright 2014 Jan Preuss
+ * www.doofmars.de
+ * 
+ * Released under the MIT license
+ *
+ */
+
+
+function init() {
 	//Return trigger für inAlphabet Eingabe
 	$('#inAlphabet').keypress(function(e){ 
 	    if(e.which == 13){//Enter key pressed
@@ -36,22 +48,23 @@
 
 }
 
-var markov = false;
-
+//data object
 var data = {
+		"markov":false,
 		"alphabet":[],
 		"productionRuleA":[],
 		"productionRuleB":[]
 };
 
+//function called on switch mode
 function switchMode() {
-	if (markov) {
-		markov = false;
+	if (data.markov) {
+		data.markov = false;
 	} else {		
-		markov = true;
+		data.markov = true;
 	}
 	$('.aRule').each(function( index ){
-		if ( markov ) {
+		if ( data.markov ) {
 			$(this).children('input').css('visibility', 'visible');			
 		} else {
 			$(this).children('input').css('visibility', 'hidden');
@@ -61,6 +74,7 @@ function switchMode() {
 	$('#theRun').html('');	
 }
 
+//add letter to alphabet
 function addAlphabet() {
 	var letter = $('#inAlphabet').val();
 	if (letter != "") {
@@ -86,6 +100,7 @@ function addAlphabet() {
 	}
 }
 
+//add a new rule
 function addRule() {
 	var ruleA = $('#inRuleA').val();
 	var ruleB = $('#inRuleB').val();
@@ -114,7 +129,7 @@ function addRule() {
 			.attr('title','Set Terminating')
 			.attr('class','terminator')
 			.appendTo(newRule);
-		if (markov) {
+		if (data.markov) {
 			terminating.css('visibility', 'visible');
 		} else {			
 			terminating.css('visibility', 'hidden');
@@ -127,6 +142,7 @@ function addRule() {
 	}
 }
 
+//checks for each letter if it is used in production rule
 function checkLetter() {
 	$('.aLetter').each(function( index ){
 			if ( checkSingleLetter($(this))) {
@@ -139,6 +155,7 @@ function checkLetter() {
 		});
 }
 
+//checks if single letter is used in production rule
 function checkSingleLetter(context) {
 	var part = context.attr('data-k1');
 	for ( var i = 0; i < data.productionRuleA.length; i++) {
@@ -158,6 +175,7 @@ function checkSingleLetter(context) {
 	return false;
 }
 
+//function to delete an letter
 function deleteLetter(letter) {
 	for ( var i = 0; i < data.alphabet.length; i++) {
 		if (letter === data.alphabet[i]) {
@@ -169,6 +187,7 @@ function deleteLetter(letter) {
 	}
 }
 
+//checks for each production rule if it is used in alphabet
 function checkRule() {
 	$('.aRule').each(function( index ){
 		if (checkSingleRule($(this), 'data-k1') &&
@@ -180,6 +199,7 @@ function checkRule() {
 		});
 }
 
+//checks if single production rule is used in alphabet
 function checkSingleRule(context, dataValue) {
 	var part = context.attr(dataValue);
 	for ( var i = 0; i < part.length; i++) {
@@ -190,7 +210,7 @@ function checkSingleRule(context, dataValue) {
 	return true;
 }
 
-
+//function to delete rule
 function deleteRule(ruleA, ruleB) {
 	for ( var i = 0; i < data.productionRuleA.length; i++) {
 		if (ruleA === data.productionRuleA[i]) {
@@ -205,19 +225,22 @@ function deleteRule(ruleA, ruleB) {
 	}
 }
 
+//run wiht given input
 function run() {
-	if (markov) {
+	if (data.markov) {
 		runMarkov();
 	} else {
 		runSemi();
 	}
 }
 
+//run semi thue
 function runSemi(){
 	var element = $('#inRun').val();
-	$('#theRun').html(createNewSemi(element, element));
+	$('#theRun').html(createResult(element, element));
 }
 
+//evaluate posibility
 function eval(context) {
 	var counter = 0;
 	for ( var i = 0; i < data.productionRuleA.length; i++) {
@@ -227,21 +250,24 @@ function eval(context) {
 			var partB = context.attr('data-k1').substr(instances[k] + data.productionRuleA[i].length);
 			var newString = partA + data.productionRuleB[i] + partB;
 			var newStringB =  partA + "<b>" +  data.productionRuleB[i] + "</b>" + partB;
-			context.append(createNewSemi(newString, newStringB));
+			context.append(createResult(newString, newStringB));
 			counter++;
 		}
 	}
 	return counter;
 }
 
-function createNewSemi(string, stringBig){
+//creates a single result 
+function createResult(string, stringBig){
 	var result = $('<div>')
 	.html(stringBig)
 	.attr('class','aRun')
 	.attr('id',data.productionRuleA.length)
 	.attr('data-k1', string)
 	.attr('data-k2', stringBig);
-	if (!markov) {
+	
+	//user feedback and onClick is enabled for semi-tue mode
+	if (!data.markov) {
 	result
 		.attr('title','Click to Collapse')
 		.attr('data-collapsed', "false")
@@ -269,40 +295,48 @@ function createNewSemi(string, stringBig){
 	return result;
 }
 
+//runs markov algorythm
 function runMarkov(){
 	$('#theRun').html('');
 	
-	var maxIt = parseInt($('#iterations').val());
+	var maxIt = parseInt($('#iterations').val()); //maximal iteration count
 	var currentString = $('#inRun').val();
 	var output =  $('#theRun');
 	var ende1 = false;
 	var flag = false;
 	
+	//Checks maxIt
 	if (typeof(maxIt) !== 'number' || isNaN(maxIt) || maxIt <= 0 || maxIt > 100000) {
 		$('#iterations').css('background-color', '#FFAFAF');
 		return;
 	} else {
 		$('#iterations').css('background-color', '#FFFFFF');
 	}
+	
+	//main loop 0 ... maxIt
 	for ( var i = 0; i < maxIt ; i++) {
+		
+		//check each rule for match with currentString
 		$('.aRule').each(function( index ){
 			var search = $(this).attr('data-k1');
 			var replace = $(this).attr('data-k2');
+			//special case for ε ("")
 			if (search === "") {
-				createNewSemi(replace + currentString,  "<b>" +  replace + "</b>" + currentString)
+				createResult(replace + currentString,  "<b>" +  replace + "</b>" + currentString)
 					.appendTo(output);
 				flag = true;
 				currentString = replace + currentString;
 				return false;
 			} 
 			
+			//if current rule can be used
 			var instances = getIndicesOf(search, currentString);			
 			if ( instances.length > 0)  {
 				var partA = currentString.substr(0, instances[0]);
 				var partB = currentString.substr(instances[0] + search.length);
 				var newString = partA + replace + partB;
 				var newStringB =  partA + "<b>" +  replace + "</b>" + partB;
-				createNewSemi(newString, newStringB).appendTo(output);
+				createResult(newString, newStringB).appendTo(output);
 				if ($(this).children('input').is(':checked')) {
 					ende1 = true;
 				}
@@ -315,15 +349,16 @@ function runMarkov(){
 			break;
 		}
 	}
-	if (ende1) {
-		createNewSemi('END1 terminating rule', 'END1 terminating rule').appendTo(output);
-	} else if (!flag) {
-		createNewSemi('END terminating rule', 'END1 terminating rule').appendTo(output);		
-	} else {
-		createNewSemi('Max Iterations reached', 'Max Iterations reached').appendTo(output);		
+	if (ende1) { //if terminating rule is triggered
+		createResult('END2 terminating rule', 'END2 terminating rule').appendTo(output);		
+	} else if (flag) { //If none is found, the algorithm stops.
+		createResult('END1 none is found', 'END1 none is found').appendTo(output);
+	} else { //else maxIt reached
+		createResult('Max Iterations reached', 'Max Iterations reached').appendTo(output);		
 	} 
 }
 
+//function to find occurencys of an substring within a string, returns an array with position 
 function getIndicesOf(searchStr, str) {
 	var startIndex = 0;
 	var index;
@@ -336,11 +371,12 @@ function getIndicesOf(searchStr, str) {
 	return indices;
 }
 
-
+//converts jQuery obect to string
 function getStatus() {
 	$('#IOGateway').html(JSON.stringify(data));
 }
 
+//input for saved state
 function setStatus() {
 	if ($('#IOGateway input').length === 0) {
 		var tooltip = 'Paste JSON Object (Your Data String) here and click "Set Data" again';
@@ -371,6 +407,7 @@ function setStatus() {
 	} 
 }
 
+//reloads the data
 function reload(theData) {
 	$('#theAlphabet').html('');
 	$('#theRules').html('');
@@ -383,8 +420,18 @@ function reload(theData) {
 		$('#inRuleB').val(theData.productionRuleB[k]);
 		addRule();
 	}
+	
+	if (data.markov !== theData.markov) {
+		if (theData.markov == true) {
+			$('#Markov').prop('checked',true);
+		} else if (theData.markov == false) {
+			$('#SemiThue').prop('checked',true);
+		}
+		switchMode();
+	}
 }
 
+//replaces "" with ε
 function checkForE(toChekc) {
 	if (toChekc === "") {
 		return "ε";
