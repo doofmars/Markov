@@ -1,12 +1,12 @@
-Markov | Semi Thue machine simulator
+ï»¿Markov | Semi Thue machine simulator
 =========================
 
 Dieses Script simuliert ein Stringersetzungssystem nach dem Semi-Thue oder dem Markov verfahren. 
 Es kann ein beliebiges Alphabet und beliebige Produktionsregeln festgelegt werden 
-und nach dem gewünschten System die eingegebenen Strings umgewandelt werden. 
+und nach dem gewÃ¼nschten System die eingegebenen Strings umgewandelt werden. 
 
-Es kann der Bestehende stand exportiert und später geladen werden.
-Die Umsetzung in Javascript ermöglicht den Simulator unter verschiedenen Betriebssystemen zu verwenden.
+Es kann der Bestehende stand exportiert und spÃ¤ter geladen werden.
+Die Umsetzung in Javascript ermÃ¶glicht den Simulator unter verschiedenen Betriebssystemen zu verwenden.
 
 Erschienen unter der MIT Lizenz
 Copyright (c) 2014 Jan Preuss
