@@ -1,23 +1,55 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+<div class="row row-spacer">
+    <div class="col-sm-3 col-xs-4">
+        <label for="basic-url">Alphabet</label>
+        <div class="input-group">
+            <input type="text" class="form-control" maxlength="1" ng-model="letter" ng-keypress="addLetter($event)">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="addLetter()">Ok</button>
+            </span>
+        </div>
+    </div>
+    <div class="col-sm-5 col-xs-8">
+        <label for="basic-url">Production Rules</label>
+        <div class="input-group">
+            <input type="text" class="form-control">
+            <span class="input-group-addon">→</span>
+            <input type="text" class="form-control">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Ok</button>
+            </span>
+        </div>
+    </div>
+    <div class="col-sm-4 col-xs-12">
+        <label for="basic-url">Input</label>
+        <div class="input-group">
+            <input type="text" class="form-control">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Run</button>
+            </span>
+        </div>
+    </div>
 </div>
-
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
-
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+<div class="row row-spacer">
+    <div class="col-sm-3 col-xs-4">
+        <div class="ui-sortable">
+            <div class="btn-group-vertical output" role="group">
+                <button type="button" class="btn btn-warning" ng-repeat="letter in data.alphabet" ng-click="data.alphabet.splice(index, 1)">{{letter}}</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-5 col-xs-8">
+        <div class="ui-sortable">
+            <span class="input-group output">
+                <span class="input-group-warning">A→B</span>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Run</button>
+                </span>
+            </span>
+        </div>
+    </div>
+    <div class="col-sm-4 col-xs-12">
+        <div class="ui-sortable">
+        </div>
+    </div>
 </div>
