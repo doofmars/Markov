@@ -9,7 +9,14 @@
  */
  angular.module('markovApp')
  .controller('MainCtrl', function ($scope) {
-    $scope.data = {alphabet: ['1', '2'], rules:[{from:'b',  terminating:false,  to:''}, { from:'a',  terminating:false,  to:'b'}], mode: ''};
+    $scope.data = 
+    {alphabet: ['1', '2', '3', '4'], 
+        rules:[
+            {from:'1b',  terminating:false,  to:''}, 
+            {from:'2b',  terminating:false,  to:''}, 
+            {from:'3b',  terminating:false,  to:''}, 
+            {from:'4a',  terminating:false,  to:'b'}
+            ], mode: ''};
     $scope.letter = '';
     $scope.ruleFrom = '';
     $scope.ruleTo = '';
@@ -21,9 +28,8 @@
                 return;
             }
         }
-        //Disallow empty or single space words
-        if ($scope.letter === '' || $scope.letter === ' ') {
-            $scope.letter = '';
+        //Disallow empty words
+        if ($scope.letter === '') {
             return;
         }
         //Test if letter is already in alphabet
@@ -49,13 +55,13 @@
                 return;
             }
         }
-        //Disallow single space rule
-        if ($scope.ruleFrom === ' ' || $scope.ruleTo === ' ' ) {
+        //Disallow empty to empty space rule
+        if ($scope.ruleFrom === '' && $scope.ruleTo === '' ) {
             return;
         }
         
         $scope.data.rules.push({from: $scope.ruleFrom, to: $scope.ruleTo, terminating: false});
-        console.log('Added rule ' + $scope.ruleFrom  + '->' + $scope.ruleTo);
+        console.log('Added rule "' + $scope.ruleFrom  + '"->"' + $scope.ruleTo + '"');
         
         $scope.ruleFrom = '';
         $scope.ruleTo = '';
