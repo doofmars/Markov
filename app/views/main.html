@@ -40,7 +40,7 @@
     <div class="col-sm-5 col-xs-8">
         <div class="ui-sortable">
             <span class="input-group output" ng-repeat="rule in data.rules track by $index">
-                <span class="input-group-warning">{{rule.from}}→{{rule.to}}</span>
+                <span class="input-group-warning">{{rule.from | emptyFilter}}→{{rule.to | emptyFilter}}</span>
                 <span class="input-group-addon">
                     <i class="glyphicon glyphicon-sort" title="Drag to move"></i>
                 </span>
