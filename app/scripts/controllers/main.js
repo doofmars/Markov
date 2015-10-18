@@ -13,7 +13,7 @@
     {alphabet: ['1', '2', '3', '4'], 
         rules:[
             {from:'1b',  terminating:false,  to:''}, 
-            {from:'2b',  terminating:false,  to:''}, 
+            {from:'2b',  terminating:true,  to:''}, 
             {from:'3b',  terminating:false,  to:''}, 
             {from:'4a',  terminating:false,  to:'b'}
             ], mode: 'markov', maxIterations: 100};
