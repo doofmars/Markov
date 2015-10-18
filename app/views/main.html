@@ -33,17 +33,24 @@
     <div class="col-sm-3 col-xs-4">
         <div class="ui-sortable">
             <div class="btn-group-vertical output" role="group">
-                <button type="button" class="btn btn-warning" ng-repeat="letter in data.alphabet" ng-click="data.alphabet.splice(index, 1)">{{letter}}</button>
+                <button type="button" class="btn btn-warning" ng-repeat="letter in data.alphabet track by $index" ng-click="data.alphabet.splice($index, 1)">{{letter}}</button>
             </div>
         </div>
     </div>
     <div class="col-sm-5 col-xs-8">
         <div class="ui-sortable">
-            <span class="input-group output" ng-repeat="rule in data.rules">
+            <span class="input-group output" ng-repeat="rule in data.rules track by $index">
                 <span class="input-group-warning">{{rule.from}}→{{rule.to}}</span>
-                <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-sort" title="Drag to move"></i>
+                </span>
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Run</button>
+                    <button class="btn btn-default" type="button" title="Toggle terminating rule">
+                        <i class="glyphicon glyphicon-off"></i>
+                    </button>
+                    <button class="btn btn-default" type="button" title="Delete rule" ng-click="data.rules.splice({{$index}}, 1)">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </button>
                 </span>
             </span>
         </div>
