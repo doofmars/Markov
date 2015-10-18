@@ -1,4 +1,31 @@
 <div class="row row-spacer">
+    <div class="col-sm-6 col-xs-12">
+        <form class="form-inline">
+            <div class="form-group form-radio">
+                <div class="radio-inline">
+                    <label>
+                        <input id="mode1" value="markov" name="modeselect" type="radio" ng-model="data.mode" > Markov Mode
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <label> 
+                        <input id="mode2" value="semithue" name="modeselect" type="radio" ng-model="data.mode" > Semi-Thue Mode
+                    </label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-6 col-xs-12">
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="iterations">Max Iterations</label>
+                <input type="number" class="form-control" id="iterations" ng-model="data.maxIterations">
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row row-spacer">
     <div class="col-sm-3 col-xs-4">
         <label for="basic-url">Alphabet</label>
         <div class="input-group">
@@ -45,7 +72,7 @@
                     <i class="glyphicon glyphicon-sort" title="Drag to move"></i>
                 </span>
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" title="Toggle terminating rule">
+                    <button class="btn btn-default" type="button" ng-show="data.mode == 'markov'" title="Toggle terminating rule">
                         <i class="glyphicon glyphicon-off"></i>
                     </button>
                     <button class="btn btn-default" type="button" title="Delete rule" ng-click="data.rules.splice({{$index}}, 1)">

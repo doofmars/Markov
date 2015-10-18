@@ -16,7 +16,7 @@
             {from:'2b',  terminating:false,  to:''}, 
             {from:'3b',  terminating:false,  to:''}, 
             {from:'4a',  terminating:false,  to:'b'}
-            ], mode: ''};
+            ], mode: 'markov', maxIterations: 100};
     $scope.letter = '';
     $scope.ruleFrom = '';
     $scope.ruleTo = '';
