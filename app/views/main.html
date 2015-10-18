@@ -11,11 +11,11 @@
     <div class="col-sm-5 col-xs-8">
         <label for="basic-url">Production Rules</label>
         <div class="input-group">
-            <input type="text" class="form-control">
+            <input id="ruleFrom" type="text" class="form-control" ng-model="ruleFrom" ng-keypress="addRule('from', $event)">
             <span class="input-group-addon">→</span>
-            <input type="text" class="form-control">
+            <input id="ruleTo" type="text" class="form-control" ng-model="ruleTo" ng-keypress="addRule('to', $event)">
             <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Ok</button>
+                <button class="btn btn-default" type="button" ng-click="addRule()">Ok</button>
             </span>
         </div>
     </div>
@@ -39,8 +39,8 @@
     </div>
     <div class="col-sm-5 col-xs-8">
         <div class="ui-sortable">
-            <span class="input-group output">
-                <span class="input-group-warning">A→B</span>
+            <span class="input-group output" ng-repeat="rule in data.rules">
+                <span class="input-group-warning">{{rule.from}}→{{rule.to}}</span>
                 <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button">Run</button>
