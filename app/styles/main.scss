@@ -102,6 +102,11 @@ body {
   display: inherit;
 }
 
+.input-group-important {
+  @extend .input-group-addon;
+  width: 100%;
+}
+
 .input-group-warning {
   @extend .input-group-addon;
   width: 100%;
