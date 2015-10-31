@@ -86,8 +86,8 @@
     <div class="col-sm-4 col-xs-12">
         <div class="ui-sortable">
             <span class="input-group output" ng-repeat="result in results track by $index">
-                <span class="input-group-addon">{{$index}}</span>
-                <span class="input-group-addon" title="Rule used">{{result.used}})</span>
+                <span class="input-group-addon" title="Iteration">{{$index}}</span>
+                <span class="input-group-addon" title="{{$last ? 'Terminating rule / Rules left' : 'Rule used'}}">{{result.used}})</span>
                 <span class="input-group-important" ng-bind-html="result.display"></span>
             </span>
         </div>
