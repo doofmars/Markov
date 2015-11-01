@@ -43,6 +43,16 @@
         $scope.letter = '';
     };
     
+    $scope.letterUsed = function(letter) {
+        for (var i = 0; i < $scope.data.rules.length; i++) {
+            var rule = $scope.data.rules[i];
+            if (getIndicesOf(letter, rule.from).length > 0 || getIndicesOf(letter, rule.to).length > 0) {
+                return 'btn-success';
+            }
+        }
+        return 'btn-warning';
+    };
+    
     $scope.addRule = function(element, keyevent) {
          //Only accept certain key events
          if (element !== undefined && keyevent !== undefined) {

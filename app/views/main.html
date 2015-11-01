@@ -60,7 +60,7 @@
     <div class="col-sm-3 col-xs-4">
         <div>
             <div class="btn-group-vertical output" role="group">
-                <button type="button" class="btn btn-warning" title="Click to remove" ng-repeat="letter in data.alphabet track by $index" ng-click="data.alphabet.splice($index, 1)">{{letter}}</button>
+                <button type="button" class="btn" ng-class="letterUsed(letter)" title="Click to remove" ng-repeat="letter in data.alphabet track by $index" ng-click="data.alphabet.splice($index, 1)">{{letter}}</button>
             </div>
         </div>
     </div>
@@ -76,7 +76,7 @@
                     <button class="btn btn-default" ng-class="{'btn-danger': rule.terminating}" type="button" ng-show="data.mode == 'markov'" ng-click="rule.terminating = !rule.terminating" title="Toggle terminating rule">
                         <i class="glyphicon glyphicon-off"></i>
                     </button>
-                    <button class="btn btn-danger" type="button" title="Delete rule" ng-click="data.rules.splice({{$index}}, 1)">
+                    <button class="btn btn-danger" type="button" title="Delete rule" ng-click="data.rules.splice(data.rules.indexOf(rule), 1)">
                         <i class="glyphicon glyphicon-remove"></i>
                     </button>
                 </span>
