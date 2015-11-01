@@ -8,6 +8,8 @@
 // 'test/spec/**/*.js'
 
 module.exports = function (grunt) {
+  //gh-pages task
+  grunt.loadNpmTasks('grunt-gh-pages');
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
@@ -438,6 +440,13 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+    
+    'gh-pages': {
+    	options: {
+      	base: 'dist'
+    	},
+    	src: ['**']
     }
   });
 
@@ -493,5 +502,10 @@ module.exports = function (grunt) {
     'newer:jshint',
     'test',
     'build'
+  ]);
+  
+  grunt.registerTask('pages', [
+  	'build',
+  	'gh-pages'                   
   ]);
 };
