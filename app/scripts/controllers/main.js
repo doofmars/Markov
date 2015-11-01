@@ -40,6 +40,7 @@
         } else {
             console.log('Letter already in alphabet');
         }
+        $('#alphabet').focus();
         $scope.letter = '';
     };
     
@@ -68,6 +69,7 @@
         }
         //Disallow empty to empty space rule
         if ($scope.ruleFrom === '' && $scope.ruleTo === '' ) {
+            $('#ruleFrom').focus();
             return;
         }
         
