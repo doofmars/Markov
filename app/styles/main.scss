@@ -102,6 +102,11 @@ body {
   display: inherit;
 }
 
+.form-radio {
+  padding-top: 6px;
+}
+
+/* Custom input groups */
 .input-group-important {
   @extend .input-group-addon;
   width: 100%;
@@ -123,6 +128,9 @@ body {
   color: #fff;
 }
 
-.form-radio {
-  padding-top: 6px;
+/* Placeholder for sorting */
+.as-sortable-placeholder {
+    border: 1px dashed #ff0000;
+    border-radius: 5px;
+    list-style: none;
 }

@@ -58,18 +58,18 @@
 </div>
 <div class="row row-spacer">
     <div class="col-sm-3 col-xs-4">
-        <div class="ui-sortable">
+        <div>
             <div class="btn-group-vertical output" role="group">
                 <button type="button" class="btn btn-warning" title="Click to remove" ng-repeat="letter in data.alphabet track by $index" ng-click="data.alphabet.splice($index, 1)">{{letter}}</button>
             </div>
         </div>
     </div>
     <div class="col-sm-5 col-xs-8">
-        <div class="ui-sortable">
-            <span class="input-group output" ng-repeat="rule in data.rules track by $index">
+        <div id="prodrules" as-sortable="dragControlListeners" ng-model="data.rules">
+            <span class="input-group output" ng-repeat="rule in data.rules" as-sortable-item>
                 <span class="input-group-addon" title="Rule number">{{$index + 1}})</span>
                 <span class="input-group-warning">{{rule.from | emptyFilter}}→{{rule.to | emptyFilter}}</span>
-                <span class="input-group-addon">
+                <span class="input-group-addon" as-sortable-item-handle>
                     <i class="glyphicon glyphicon-sort" title="Drag to move"></i>
                 </span>
                 <span class="input-group-btn">
@@ -84,7 +84,7 @@
         </div>
     </div>
     <div class="col-sm-4 col-xs-12">
-        <div class="ui-sortable">
+        <div>
             <span class="input-group output" ng-repeat="result in results track by $index">
                 <span class="input-group-addon" title="Iteration">{{$index}}</span>
                 <span class="input-group-addon" title="{{$last ? 'Terminating rule / Rules left' : 'Rule used'}}">{{result.used}})</span>

@@ -69,6 +69,12 @@
         $('#ruleFrom').focus();
     };
     
+    $scope.dragControlListeners = {
+        accept: function () {
+            return true;
+        } //override to determine drag is allowed or not. default is true.
+    };
+    
     $scope.runAutomat = function(keyevent) {
         //Only accept return key events
         if (keyevent !== undefined) {
