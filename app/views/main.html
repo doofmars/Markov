@@ -68,7 +68,7 @@
         <div id="prodrules" as-sortable="dragControlListeners" ng-model="data.rules">
             <span class="input-group output" ng-repeat="rule in data.rules" as-sortable-item>
                 <span class="input-group-addon" title="Rule number">{{$index + 1}})</span>
-                <span class="input-group-warning">{{rule.from | emptyFilter}}→{{rule.to | emptyFilter}}</span>
+                <span ng-class="ruleUsed(rule.from, rule.to)">{{rule.from | emptyFilter}}→{{rule.to | emptyFilter}}</span>
                 <span class="input-group-addon" as-sortable-item-handle>
                     <i class="glyphicon glyphicon-sort" title="Drag to move"></i>
                 </span>

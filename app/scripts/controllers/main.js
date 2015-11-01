@@ -79,6 +79,17 @@
         $('#ruleFrom').focus();
     };
     
+    $scope.ruleUsed = function(from, to) {
+        var mash = from + to;
+        for (var i = 0; i < mash.length; i++) {
+            if ($.inArray(mash[i], $scope.data.alphabet) < 0){
+                return 'input-group-warning';
+            }
+        }
+        
+        return 'input-group-success';        
+    };
+    
     $scope.dragControlListeners = {
         accept: function () {
             return true;
