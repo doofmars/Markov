@@ -1,0 +1,136 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+body {
+  padding: 0;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+
+}
+
+.navbar {
+  margin-bottom: 0px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 10px;
+
+  /* Make the masthead heading the same height as the navigation */
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+    padding-bottom: 19px;
+  }
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+
+  .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+  }
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+
+  p + h4 {
+    margin-top: 28px;
+  }
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 1000px;
+  }
+
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
+
+/* Fix outputs layout */
+.row-spacer {
+  padding-bottom: 10px;
+}
+
+.output {
+  display: inherit;
+}
+
+.form-radio {
+  padding-top: 6px;
+}
+
+/* Custom input groups */
+.input-group-important {
+  @extend .input-group-addon;
+  width: 100%;
+}
+
+.input-group-warning {
+  @extend .input-group-addon;
+  width: 100%;
+  background-color: #f0ad4e;
+  border-color: #eea236;
+  color: #fff;
+}
+
+.input-group-success {
+  @extend .input-group-addon;
+  width: 100%;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+  color: #fff;
+}
+
+/* Placeholder for sorting */
+.as-sortable-placeholder {
+    border: 1px dashed #ff0000;
+    border-radius: 5px;
+    list-style: none;
+}

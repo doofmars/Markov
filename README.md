@@ -9,5 +9,5 @@ Es kann der Bestehende stand exportiert und später geladen werden.
 Die Umsetzung in Javascript ermöglicht den Simulator unter verschiedenen Betriebssystemen zu verwenden.
 
 Erschienen unter der MIT Lizenz
-Copyright (c) 2014 Jan Preuss
+Copyright (c) 2015 Jan Preuss
 www.doofmars.de
